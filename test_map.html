@@ -227,7 +227,7 @@ document.getElementById("change-party")
           style_target = function(f) { return f.properties.party };
           geojson.setStyle(style);
 
-          map.removeControl(legend);
+          //map.removeControl(legend);
           var legend = L.control({position: 'topright'});
 
           legend.onAdd = function (map) {
