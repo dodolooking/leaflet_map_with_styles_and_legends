@@ -111,7 +111,17 @@ for (i=0; i<districts.features.length; i++) {
     console.log('districts.features.properties.anotherItem', districts.features[i].properties.anotherItem);
 };
 
+
+
 var geojson;
+
+var style_override = {};
+var style_target = function(f) { return f.properties.gender };
+
+function merge_styles(base, new_styles){
+    for (var attrname in new_styles) { base[attrname] = new_styles[attrname]; }
+    return base;
+}
 
 //set color palatte
 function getColor(d) {
@@ -125,8 +135,9 @@ function getColor(d) {
 
 //attach color palatte to category
 function style(feature, color) {
-    var fillColor = (!color) ? getColor(feature.properties.gender) : color;
-    return {
+    var target = style_target(feature);
+    var fillColor = (!color) ? getColor(target) : color;
+    var default_style = {
         fillColor: fillColor,
         weight: 2,
         opacity: 1,
@@ -134,21 +145,22 @@ function style(feature, color) {
         dashArray: '6',
         fillOpacity: 0.6
     };
+
+    return merge_styles(default_style, style_override);
 };
-
-
 
 L.geoJson(districts).addTo(map);
 
 function highlightFeature(e) {
     var layer = e.target;
     //on hover change color from what was defined in function style(feature)
-    layer.setStyle({
+    style_override = {
         weight: 4,
         color: 'white',
         dashArray: '',
         //fillOpacity: 0.7
-    });
+    }
+    geojson.resetStyle(e.target);
 
     if (!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
@@ -161,6 +173,7 @@ function highlightFeature(e) {
 
 //reset highlight when hovering out
 function resetHighlight(e) {
+    style_override = {};
     geojson.resetStyle(e.target);
     info.update();
 }
@@ -203,22 +216,18 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
-
-
-
-
 //click to change color style to gender categories
 document.getElementById("change-gender")
         .addEventListener('click', function () {
-            geojson.setStyle(function (f) {return style(f, getColor(f.properties.gender));
-          });
+          style_target = function(f) { return f.properties.gender };
+          geojson.setStyle(style);
        });
 
 //click to change color style to party categories
 document.getElementById("change-party")
         .addEventListener('click', function () {
-            geojson.setStyle(function (f) {return style(f, getColor(f.properties.party));
-          });
+          style_target = function(f) { return f.properties.party };
+          geojson.setStyle(style);
        });
 
 
