@@ -52,6 +52,7 @@ This is a test map.
 <button id="change-gender">Change to Gender colors</button>
 <button id="change-party">Change to party colors</button>
 <button id="change-race">Change to race colors</button>
+<button id="plain-style">Revert to plain map</button>
 <div id = "map"></div>
 
 
@@ -294,6 +295,25 @@ document.getElementById("change-race")
            legend.addTo(map);
        });
 
+//click to change color style to race categories
+document.getElementById("plain-style")
+        .addEventListener('click', function () {
+          style_target = function(f) { return f.properties.genderx };
+          geojson.setStyle(style);
+
+          if (legend instanceof L.Control) { map.removeControl(legend); }
+
+          legend = L.control({position: 'topright'});
+
+          legend.onAdd = function (map) {
+
+            //had to create a dummy div to get add/remove to work.
+            var div = L.DomUtil.create('div', 'info legend')//,
+            return div;
+          };
+          legend.addTo(map);
+
+       });
 
 
 
