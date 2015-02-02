@@ -23,16 +23,16 @@ var test_data =
 
 {"type": "FeatureCollection", 
 "features": [
-    {'dist_num':'1', 'party':'Democrat', 'councilperson':'Abe', 'gender':'male'},
-    {'dist_num':'2', 'party':'Democrat', 'councilperson':'Ben', 'gender':'male'},
-    {'dist_num':'3', 'party':'Democrat', 'councilperson':'Cal', 'gender':'female'},
-    {'dist_num':'4', 'party':'Republican', 'councilperson':'Don', 'gender':'male'},
-    {'dist_num':'5', 'party':'Democrat', 'councilperson':'Eva', 'gender':'female'},
-    {'dist_num':'6', 'party':'Democrat', 'councilperson':'Fred', 'gender':'male'},
-    {'dist_num':'7', 'party':'Republican', 'councilperson':'Gil', 'gender':'male'},
-    {'dist_num':'8', 'party':'Democrat', 'councilperson':'Hank', 'gender':'male'},
-    {'dist_num':'9', 'party':'Republican', 'councilperson':'Ivy', 'gender':'female'},
-    {'dist_num':'10', 'party':'Democrat', 'councilperson':'Joe', 'gender':'male'}]
+    {'dist_num':'1', 'party':'Democrat', 'councilperson':'Abe', 'gender':'male', 'race':'unknown'},
+    {'dist_num':'2', 'party':'Democrat', 'councilperson':'Ben', 'gender':'male', 'race':'black'},
+    {'dist_num':'3', 'party':'Democrat', 'councilperson':'Cal', 'gender':'female', 'race':'white'},
+    {'dist_num':'4', 'party':'Republican', 'councilperson':'Don', 'gender':'male', 'race':'black'},
+    {'dist_num':'5', 'party':'Democrat', 'councilperson':'Eva', 'gender':'female', 'race':'white'},
+    {'dist_num':'6', 'party':'Democrat', 'councilperson':'Fred', 'gender':'male', 'race':'black'},
+    {'dist_num':'7', 'party':'Republican', 'councilperson':'Gil', 'gender':'male', 'race':'black'},
+    {'dist_num':'8', 'party':'Democrat', 'councilperson':'Hank', 'gender':'male', 'race': 'black'},
+    {'dist_num':'9', 'party':'Republican', 'councilperson':'Ivy', 'gender':'female', 'race':'white'},
+    {'dist_num':'10', 'party':'Democrat', 'councilperson':'Joe', 'gender':'male', 'race':'hispanic'}]
 
 
 
