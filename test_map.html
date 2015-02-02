@@ -116,7 +116,7 @@ for (i=0; i<districts.features.length; i++) {
 var geojson;
 
 var style_override = {};
-var style_target = function(f) { return f.properties.gender };
+var style_target = function(f) { return f.properties.genderx };
 
 function merge_styles(base, new_styles){
     for (var attrname in new_styles) { base[attrname] = new_styles[attrname]; }
@@ -142,7 +142,7 @@ function style(feature, color) {
         weight: 2,
         opacity: 1,
         color: 'white',
-        dashArray: '6',
+        dashArray: '4',
         fillOpacity: 0.5
     };
 
@@ -155,7 +155,7 @@ function highlightFeature(e) {
     var layer = e.target;
     //on hover change color from what was defined in function style(feature)
     style_override = {
-        weight: 4,
+        weight: 3,
         color: 'white',
         dashArray: '',
         fillOpacity: 0.7
@@ -194,28 +194,6 @@ var geojson = L.geoJson(districts, {
 
 //create an initial legend for the map style on load
 var legend;
-legend = L.control({position: 'topright'});
-
-legend.onAdd = function (map) {
-
-var div = L.DomUtil.create('div', 'info legend'),
-    grades = ['male', 'female'],
-    labels = [];
-
-// loop through our density intervals and generate a label with a colored square for each interval
-for (var i = 0; i < grades.length; i++) {
-    div.innerHTML +=
-        '<i style="background:' + getColor(grades[i]) + '"></i> ' +
-        grades[i]  + '<br>' ;
-}
-
-return div;
-};
-
-legend.addTo(map);
-
-
-
 
 //click to change color style to gender categories
 document.getElementById("change-gender")
@@ -223,7 +201,7 @@ document.getElementById("change-gender")
           style_target = function(f) { return f.properties.gender };
           geojson.setStyle(style);
 
-          map.removeControl(legend);
+          if (legend instanceof L.Control) { map.removeControl(legend); }
 
           legend = L.control({position: 'topright'});
 
@@ -239,12 +217,9 @@ document.getElementById("change-gender")
                     '<i style="background:' + getColor(grades[i]) + '"></i> ' +
                     grades[i]  + '<br>' ;
             }
-
             return div;
           };
- 
-          legend.addTo(map);
-
+           legend.addTo(map);
        });
 
 //click to change color style to party categories
@@ -253,7 +228,8 @@ document.getElementById("change-party")
           style_target = function(f) { return f.properties.party };
           geojson.setStyle(style);
 
-          map.removeControl(legend);
+          if (legend instanceof L.Control) { map.removeControl(legend); }
+
           legend = L.control({position: 'topright'});
 
           legend.onAdd = function (map) {
@@ -268,14 +244,10 @@ document.getElementById("change-party")
                     '<i style="background:' + getColor(grades[i]) + '"></i> ' +
                     grades[i]  + '<br>' ;
             }
-
             return div;
           };
- 
-          legend.addTo(map);
-
+           legend.addTo(map);
        });
-
 
  </script>
 
