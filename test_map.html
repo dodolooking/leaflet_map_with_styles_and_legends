@@ -137,9 +137,9 @@ function getColor(d) {
            d == 'female' ? 'yellow' :
            d == 'white' ? 'purple' :
            d == 'black' ? 'orange' :
-           d == 'hispanic' ? 'beige' :
+           d == 'hispanic' ? 'coral' :
            d == 'asian' ? 'magenta' :
-              'pink';
+              'gray';
 };
 
 
@@ -228,6 +228,7 @@ document.getElementById("change-gender")
                     grades[i]  + '<br>' ;
             }
             console.log("DIV FOR CHANGE GENDER: ", div.innerHTML);
+            div.innerHTML += "<i style='background:gray'></i> unknown<br>"
             return div;
           };
            legend.addTo(map);
@@ -255,6 +256,8 @@ document.getElementById("change-party")
                     '<i style="background:' + getColor(grades[i]) + '"></i> ' +
                     grades[i]  + '<br>' ;
             }
+            div.innerHTML += "<i style='background:gray'></i> unknown<br>"
+
             return div;
           };
            legend.addTo(map);
@@ -284,6 +287,8 @@ document.getElementById("change-race")
                     '<i style="background:' + getColor(grades[i]) + '"></i> ' +
                     grades[i]  + '<br>' ;
             }
+            div.innerHTML += "<i style='background:gray'></i> unknown<br>"
+
             return div;
           };
            legend.addTo(map);
